@@ -17,3 +17,5 @@ In this project, we'll first write some JS functions ourselves that has these ab
 *By accident*, our API is just the same as Redux's! So we can switch to Redux API, and see how Redux manages Vanilla JavaScript.
 
 Next, we'll add React instead of our own UI rendering, and see how the two couples together.
+
+## How Redux Works
