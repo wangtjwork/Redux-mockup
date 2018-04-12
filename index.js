@@ -116,52 +116,31 @@ store.subscribe(() => {
   console.log('The new state is: ', store.getState());
 })
 
-store.dispatch({
-  type: ADD_TODO,
-  todo: {
-    id: 0,
-    name: 'Learn Redux',
-    complete: false
-  }
-})
+store.dispatch(addTodoAction({
+  id: 0,
+  name: 'Learn Redux',
+  complete: false
+}));
 
-store.dispatch({
-  type: ADD_TODO,
-  todo: {
-    id: 1,
-    name: 'Walk the dog',
-    complete: false
-  }
-})
+store.dispatch(addTodoAction({
+  id: 1,
+  name: 'Walk the dog',
+  complete: false
+}));
 
-store.dispatch({
-  type: ADD_TODO,
-  todo: {
-    id: 2,
-    name: 'Wash the car',
-    complete: true
-  }
-})
+store.dispatch(addTodoAction({
+  id: 2,
+  name: 'Wash the car',
+  complete: true
+}));
 
-store.dispatch({
-  type: REMOVE_TODO,
-  id: 1
-});
+store.dispatch(removeTodoAction(1));
 
-store.dispatch({
-  type: TOGGLE_TODO,
-  id: 0
-})
+store.dispatch(toggleTodoAction(0));
 
-store.dispatch({
-  type: ADD_GOAL,
-  goal: {
-    id: 0,
-    name: 'Lose 20 pounds'
-  }
-})
+store.dispatch(addGoalAction({
+  id: 0,
+  name: 'Lose 20 pounds'
+}));
 
-store.dispatch({
-  type: REMOVE_GOAL,
-  id: 0
-})
+store.dispatch(removeGoalAction(0));
