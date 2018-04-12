@@ -31,11 +31,48 @@ function createStore(reducer) {
   };
 }
 
+// App code
 const ADD_TODO = 'ADD_TODO';
 const REMOVE_TODO = 'REMOVE_TODO';
 const TOGGLE_TODO = 'TOGGLE_TODO';
 const ADD_GOAL = 'ADD_GOAL';
 const REMOVE_GOAL = 'REMOVE_GOAL';
+
+// Action Creators
+const addTodoAction = (todo) => {
+  return {
+    type: ADD_TODO,
+    todo
+  }
+}
+
+const removeTodoAction = (id) => {
+  return {
+    type: REMOVE_TODO,
+    id
+  }
+}
+
+const toggleTodoAction = (id) => {
+  return {
+    type: TOGGLE_TODO,
+    id
+  }
+}
+
+const addGoalAction = (goal) => {
+  return {
+    type: ADD_GOAL,
+    goal
+  }
+}
+
+const removeGoalAction = (id) => {
+  return {
+    type: REMOVE_GOAL,
+    id
+  }
+}
 
 // reducer, must be pure function
 function todos (state = [], action) {
