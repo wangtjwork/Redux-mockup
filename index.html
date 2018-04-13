@@ -177,6 +177,15 @@
       document.getElementById('goalBtn')
         .addEventListener('click', addGoal);
 
+      const createRemoveButton = (onClick) => {
+        const removeBtn = document.createElement('button');
+        removeBtn.innerHTML = 'X';
+
+        removeBtn.addEventListener('click', function () {
+          store.dispatch('click', onClick);
+        })
+      }
+
       const addTodoToDOM = (todo) => {
         const node = document.createElement('li');
         const text = document.createTextNode(todo.name);
