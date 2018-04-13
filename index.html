@@ -133,6 +133,9 @@
       }
 
       const store = createStore(app);
+      store.subscribe(() => {
+        console.log('The new state is: ' + state);
+      })
 
       const addTodo = () => {
         const input = document.getElementById('todo');
@@ -140,7 +143,7 @@
         input.value = '';
 
         store.dispatch(addTodoAction({
-          id: generateId,
+          id: generateId(),
           name,
           complete: false
         }))
@@ -152,11 +155,15 @@
         input.value = '';
 
         store.dispatch(addGoalAction({
-          id: generateId,
+          id: generateId(),
           name
         }))
       }
 
+      document.getElementById('todoBtn')
+        .addEventListener('click', addTodo);
+      document.getElementById('goalBtn')
+        .addEventListener('click', addGoal);
     </script>
   </body>
 </html>
