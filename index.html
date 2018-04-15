@@ -107,7 +107,15 @@
           return alert("Nope. That's a bad idea");
         }
 
-        return store.dispatch(action)
+        return store.dispatch(action);
+      }
+
+      function checker(store) {
+        return function(next) {
+          return function(action) {
+
+          }
+        }
       }
 
       const store = Redux.createStore(Redux.combineReducers({
