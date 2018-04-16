@@ -6,6 +6,7 @@
     <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.3.0-alpha.1/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://tylermcginnis.com/goals-todos-api/index.js"></script>
   </head>
   <body>
 
@@ -21,6 +22,7 @@
       const TOGGLE_TODO = 'TOGGLE_TODO';
       const ADD_GOAL = 'ADD_GOAL';
       const REMOVE_GOAL = 'REMOVE_GOAL';
+      const RECEIVE_DATA = 'RECEIVE_DATA';
 
       // Action Creators
       const addTodoAction = (todo) => {
@@ -58,6 +60,14 @@
         }
       }
 
+      const receiveDataAction = (todos, goals) => {
+        return {
+          type: RECEIVE_DATA,
+          todos,
+          goals
+        }
+      }
+
       // reducer, must be pure function
       function todos (state = [], action) {
         switch(action.type) {
@@ -72,6 +82,8 @@
                   complete: !todo.complete
                 })
             })
+          case RECEIVE_DATA:
+            return action.todos;
           default:
             return state;
         }
@@ -82,7 +94,9 @@
           case ADD_GOAL:
             return state.concat([action.goal]);
           case REMOVE_GOAL:
-            return state.filter(goal => goal.id !== action.id)
+            return state.filter(goal => goal.id !== action.id);
+          case RECEIVE_DATA:
+            return action.goals;
           default:
             return state;
         }
