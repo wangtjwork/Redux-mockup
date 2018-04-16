@@ -179,6 +179,12 @@
 
         removeItem = (todo) => {
           this.props.store.dispatch(removeTodoAction(todo.id));
+
+          return API.deleteTodo(todo.id)
+            .catch(() => {
+              this.props.store.dispatch(addTodoAction(todo));
+              alert('An Error occurs');
+            })
         }
 
         toggleItem = (todo) => {
