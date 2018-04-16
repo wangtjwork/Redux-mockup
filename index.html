@@ -183,12 +183,18 @@
           return API.deleteTodo(todo.id)
             .catch(() => {
               this.props.store.dispatch(addTodoAction(todo));
-              alert('An Error occurs');
+              alert('An error occured');
             })
         }
 
         toggleItem = (todo) => {
           this.props.store.dispatch(toggleTodoAction(todo.id));
+
+          return API.saveTodoToggle(todo.id)
+            .catch(() => {
+              this.props.store.dispatch(toggleTodoAction(todo.id));
+              alert('An error occured');
+            })
         }
 
         render() {
@@ -225,6 +231,12 @@
 
         removeItem = (goal) => {
           this.props.store.dispatch(removeGoalAction(goal.id));
+
+          return API.deleteGoal(goal.id)
+            .catch(() => {
+              this.props.store.dispatch(addGoalAction(goal));
+              alert('An error occured');
+            })
         }
 
         render() {
