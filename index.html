@@ -81,6 +81,32 @@
         }
       }
 
+      const handleAddGoal = (name, initInput) => {
+        return (dispatch) => {
+          return API.saveGoal(name)
+            .then((goal) => {
+              dispatch(addGoalAction(goal));
+
+              initInput();
+            })
+            .catch(() => {
+              alert('An error occured');
+            });
+        }
+      }
+
+      const handleDeleteGoal = (goal) => {
+        return (dispatch) => {
+          dispatch(removeGoalAction(goal.id));
+
+          return API.deleteGoal(goal.id)
+            .catch(() => {
+              dispatch(addGoalAction(goal));
+              alert('An error occured');
+            })
+        }
+      }
+
       // reducer, must be pure function
       function todos (state = [], action) {
         switch(action.type) {
@@ -229,26 +255,14 @@
       class Goals extends React.Component {
         addItem = (e) => {
           e.preventDefault();
-
-          return API.saveTodo(this.input.value)
-            .then((goal) => {
-              this.props.store.dispatch(addGoalAction(goal));
-
-              this.input.value = '';
-            })
-            .catch(() => {
-              alert('An error occured');
-            });
+          this.props.store.dispatch(handleAddGoal(
+            this.input.value,
+            () => this.input.value = ''
+          ));
         }
 
         removeItem = (goal) => {
-          this.props.store.dispatch(removeGoalAction(goal.id));
-
-          return API.deleteGoal(goal.id)
-            .catch(() => {
-              this.props.store.dispatch(addGoalAction(goal));
-              alert('An error occured');
-            })
+          this.props.store.dispatch(handleDeleteGoal(goal));
         }
 
         render() {
