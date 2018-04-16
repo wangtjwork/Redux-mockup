@@ -121,12 +121,21 @@
 
       const handleToggleTodo = (todo) => (dispatch) => {
         dispatch(toggleTodoAction(todo.id));
-        
+
         return API.saveTodoToggle(todo.id)
           .catch(() => {
             dispatch(toggleTodoAction(todo.id));
             alert('An error occured');
           })
+      }
+
+      const handleInitialData = () => (dispatch) => {
+        Promise.all([
+          API.fetchTodos(),
+          API.fetchGoals()
+        ]).then(([todos, goals]) => {
+          dispatch(receiveDataAction(todos, goals));
+        })
       }
 
       // reducer, must be pure function
@@ -296,12 +305,7 @@
         componentDidMount() {
           const {store} = this.props;
 
-          Promise.all([
-            API.fetchTodos(),
-            API.fetchGoals()
-          ]).then(([todos, goals]) => {
-            store.dispatch(receiveDataAction(todos, goals));
-          })
+          store.dispatch(handleInitialData());
 
           store.subscribe(() => this.forceUpdate());
         }
