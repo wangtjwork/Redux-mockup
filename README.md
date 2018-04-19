@@ -26,6 +26,6 @@ Redux solves the key abilities by providing a store that:
 4. takes in [reducers](#reducer) to update states.
 
 ### Reducer:
-A Reducer must be a [pure function]{https://en.wikipedia.org/wiki/Pure_function}, making sure the state changes are __predictable__.
+A Reducer must be a [pure function](]{https://en.wikipedia.org/wiki/Pure_function), making sure the state changes are __predictable__.
 
 Reducers takes in __actions__ to decide how to update a state.
