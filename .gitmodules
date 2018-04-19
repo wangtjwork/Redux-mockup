@@ -1,0 +1,3 @@
+[submodule "todos-goals-redux-react"]
+	path = todos-goals-redux-react
+	url = https://github.com/wangtjwork/todos-goals-redux-react.git
